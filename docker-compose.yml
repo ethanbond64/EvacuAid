@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  server:
+    build: ./backend
+    command: gunicorn -b 0.0.0.0:8000 --access-logfile - "server.app:create_app()"
+    env_file:
+      - '.env'
+    volumes:
+      - './backend:/backend'
+    ports:
+      - '8000:8000'
+
+  frontend:
+    build: './frontend'
+    command: npm run start
+    stdin_open: true
+    env_file:
+      - '.env'
+    ports:
+      - '3000:3000'
+    volumes:
+      - './frontend/:/frontend'
+      - '/frontend/node_modules'
