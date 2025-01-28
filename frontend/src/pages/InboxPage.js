@@ -58,7 +58,7 @@ export const InboxPage = () => {
                 <div>
                   <h3 className="text-lg font-bold text-gray-800">{user.name}</h3>
                   <p className="text-sm text-gray-600">
-                    Needs: {JSON.parse(user.specificNeeds).join(", ")}
+                    Needs: {user.specificNeeds.join(", ")}
                   </p>
                 </div>
               </div>

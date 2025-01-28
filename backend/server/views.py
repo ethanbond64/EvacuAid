@@ -47,12 +47,18 @@ def create_user():
     needs = data.get('specificNeeds', [])
     if not isinstance(needs, list):
         needs = [needs]
+    
+    is_helper = data.get('is_helper', False)
+    if is_helper == "false":
+        is_helper = False
+    is_helper = bool(is_helper)
+
     user = User(
         name=data['name'], 
         email=data['email'],
         lat=float(data.get('lat', 0.0)),
         lng=float(data.get('lng', 0.0)),
-        is_helper=bool(data.get('is_helper', False)),
+        is_helper=is_helper,
         specificNeeds=needs,
         additionalDetails=data.get('additionalDetails', ""),
         image=image_filename
